@@ -29,6 +29,7 @@ $().ready(function() {
     .click(function() {
       $(this).addClass('hidden');
       definitionsContainer.removeClass('blurred');
+      iframe.attr('src', '');
     })
     .append(popup)
     .appendTo(document.body);
