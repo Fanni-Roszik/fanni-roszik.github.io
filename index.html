@@ -10,6 +10,13 @@
             display: none;
         }
 
+        .flat {
+            max-height: 0 !important;
+            overflow: hidden;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
         .definitions {
             margin: 0;
             padding: 0;
@@ -19,6 +26,9 @@
             list-style-type: none;
             margin: 5px;
             padding: 5px;
+            background-color: white;
+            max-height: 2em;
+            transition: max-height .3s ease-in-out, margin .3s ease-in-out, padding .3s ease-in-out;
         }
 
         .searchterm {
@@ -39,6 +49,7 @@
             background-color: white;
             background-color: rgba(255, 255, 255, 0.5);
             padding: 20px;
+            overflow: hidden;
         }
 
         .popup {

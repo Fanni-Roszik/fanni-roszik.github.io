@@ -63,9 +63,9 @@ $().ready(function() {
     .keyup(function(event) {
       definitions.forEach(function(definition) {
         if (titleMatches(definition.title, event.target.value)) {
-          definition.element.removeClass('hidden');
+          definition.element.removeClass('flat');
         } else {
-          definition.element.addClass('hidden');
+          definition.element.addClass('flat');
         }
       });
     })
