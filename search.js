@@ -22,7 +22,8 @@ $().ready(function() {
   var iframe = $('<iframe src="" />');
 
   var popup = $('<div class="popup"></div>')
-    .append(iframe);
+    .append(iframe)
+    .append('<span class="close">X</span>');
 
   var overlay = $('<div class="overlay hidden"></div>')
     .click(function() {
@@ -31,13 +32,6 @@ $().ready(function() {
     })
     .append(popup)
     .appendTo(document.body);
-
-  $('<span class="close">X</span>')
-    .click(function() {
-      overlay.addClass('hidden');
-      definitionsContainer.removeClass('blurred');
-    })
-    .appendTo(popup);
 
   $('.definition')
     .each(function(index, node) {
