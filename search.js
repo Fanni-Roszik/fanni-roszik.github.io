@@ -18,26 +18,54 @@ function titleMatches(title, searchTerm) {
 
 $().ready(function() {
   var definitions = [];
+  var definitionsContainer = $('.container');
+  var iframe = $('<iframe src="" />');
+
+  var popup = $('<div class="popup"></div>')
+    .append(iframe);
+
+  var overlay = $('<div class="overlay hidden"></div>')
+    .click(function() {
+      $(this).addClass('hidden');
+      definitionsContainer.removeClass('blurred');
+    })
+    .append(popup)
+    .appendTo(document.body);
+
+  $('<span class="close">X</span>')
+    .click(function() {
+      overlay.addClass('hidden');
+      definitionsContainer.removeClass('blurred');
+    })
+    .appendTo(popup);
+
   $('.definition')
     .each(function(index, node) {
       var element = $(node);
-      var anchor = element.find('a');
-      var title = anchor.text().toLowerCase();
-      var link = anchor.attr('href');
+      var title = element.find('a').text().toLowerCase();
       var definition = {
         title: title,
         element: element,
-        link: link,
       };
       definitions.push(definition);
+    })
+    .click(function(event) {
+      event.preventDefault();
+      var link = $(event.target).attr('href');
+      if (link) {
+        iframe.attr('src', link);
+        definitionsContainer.addClass('blurred');
+        overlay.removeClass('hidden');
+      }
     });
+  
   $('<input class="searchterm" type="text" value="" />')
     .keyup(function(event) {
       definitions.forEach(function(definition) {
         if (titleMatches(definition.title, event.target.value)) {
-          definition.element.removeClass('hidden');
+          definition.element.removeClass('flat');
         } else {
-          definition.element.addClass('hidden');
+          definition.element.addClass('flat');
         }
       });
     })
