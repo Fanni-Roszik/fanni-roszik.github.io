@@ -16,7 +16,7 @@ function titleMatches(title, searchTerm) {
   return expression.test(title);
 }
 
-$().ready(function() {
+$(function() {
   var definitions = [];
   var definitionsContainer = $('.container');
   var iframe = $('<iframe src="" />');
@@ -26,7 +26,7 @@ $().ready(function() {
     .append('<span class="close">X</span>');
 
   var overlay = $('<div class="overlay hidden"></div>')
-    .click(function() {
+    .on('click', function() {
       $(this).addClass('hidden');
       definitionsContainer.removeClass('blurred');
       iframe.attr('src', '');
@@ -44,7 +44,7 @@ $().ready(function() {
       };
       definitions.push(definition);
     })
-    .click(function(event) {
+    .on('click', function(event) {
       event.preventDefault();
       var link = $(event.target).attr('href');
       if (link) {
@@ -53,9 +53,9 @@ $().ready(function() {
         overlay.removeClass('hidden');
       }
     });
-  
+
   $('<input class="searchterm" type="text" value="" placeholder="Keresés" />')
-    .keyup(function(event) {
+    .on('keyup', function(event) {
       definitions.forEach(function(definition) {
         if (titleMatches(definition.title, event.target.value)) {
           definition.element.removeClass('flat');
