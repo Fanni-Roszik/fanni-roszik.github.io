@@ -53,7 +53,7 @@ $().ready(function() {
       }
     });
   
-  $('<input class="searchterm" type="text" value="" />')
+  $('<input class="searchterm" type="text" value="" placeholder="Keresés" />')
     .keyup(function(event) {
       definitions.forEach(function(definition) {
         if (titleMatches(definition.title, event.target.value)) {
