@@ -1,5 +1,7 @@
 var REGULAR_EXPRESSION_CONTROLS = ['\\', '(', ')', '['];
 
+var fakeExpression = { test: function() { return true; } };
+
 function escapeTerm(term) {
   var newTerm = term;
   for (index in REGULAR_EXPRESSION_CONTROLS) {
@@ -10,13 +12,8 @@ function escapeTerm(term) {
 }
 
 function buildExpression(searchTerm) {
-  if (searchTerm === '') {
-    return {
-      test: function() { return true; }
-    };
-  }; 
-  var term = escapeTerm(searchTerm);
-  return new RegExp(term, 'gi');
+  if (searchTerm === '') { return fakeExpression; }
+  return new RegExp(escapeTerm(searchTerm), 'gi');
 }
 
 $(function() {
